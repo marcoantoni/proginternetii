@@ -6,28 +6,28 @@
 	<title>Formulário de envio de mensagem</title>
 </head>
 <body>
-	<form>
+	<form method="GET" action="processa_mensagem.php">
 		<fieldset>
 			<legend>Enviando uma mensagem</legend>
-			Nome <input type="text"> <br>
-			Nascimento: <input type="date"> <br>
-			CPF <input type="text"> <br>
-			Telefone <input type="tel"> <br>
-			Email <input type="email"> <br>
+			Nome <input type="text" name="nome"> <br>
+			Nascimento: <input type="date" name="nasc"> <br>
+			CPF <input type="text" name="cpf"> <br>
+			Telefone <input type="tel" name="fone"> <br>
+			Email <input type="email" name="email"> <br>
 			Sexo <br> 
 			<input type="radio" name="sexo"> Feminino <input type="radio" name="sexo">Masculino <input type="radio" name="sexo"> Intersexo <br>
 			Qual o melhor dia e horário para entrar em contato? <br>
-			Horário <input type="time"> <br>
+			Horário <input type="time" name="horario"> <br>
 			Dia da semana <br>
-			<input type="checkbox"> Segunda-feira 
-			<input type="checkbox"> Terça-feira 
-			<input type="checkbox"> Quarta-feira 
-			<input type="checkbox"> Quinta-feira 
-			<input type="checkbox"> Sexta-feira 
-			<input type="checkbox"> Sabádo 
+			<input type="checkbox" name="seg"> Segunda-feira 
+			<input type="checkbox" name="ter"> Terça-feira 
+			<input type="checkbox" name="qua"> Quarta-feira 
+			<input type="checkbox" name="qui"> Quinta-feira 
+			<input type="checkbox" name="sex"> Sexta-feira 
+			<input type="checkbox" name="sab"> Sabádo 
 			<br>
 			Qual o seu problema?<br>
-			<textarea cols="80" rows="5"></textarea> <br>
+			<textarea cols="80" rows="5" name="mensagem"></textarea> <br>
 			<button>Enviar</button>
 		</fieldset>
 	</form>
