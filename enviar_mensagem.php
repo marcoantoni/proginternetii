@@ -28,7 +28,8 @@
 			<br>
 			Qual o seu problema?<br>
 			<textarea cols="80" rows="5" name="mensagem"></textarea> <br>
-			<button>Enviar</button>
+			<!--<button>Enviar</button>-->
+			<input type="submit" name="enviar" value="Enviar">
 		</fieldset>
 	</form>
 </body>
