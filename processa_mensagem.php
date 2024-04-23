@@ -3,11 +3,11 @@
 
 	if (isset($_GET["enviar"])) {
 
-	//	$nome = ""; 
-	//	$nascimento = "";
+		$nome = ""; 
+		$nascimento = "";
 
 	//	if (isset($_GET["nome"]))
-			$nome = $_GET["nome"];
+			
 
 	//	if (isset($_GET["nas"]))
 			$nascimento = $_GET["nasc"];
@@ -32,7 +32,9 @@
 
 		// validando as informações vindas do formulário
 		// a função empty retorna true se a variavel estiver vazia
-		if (empty($nome) == true){
+		if (isset($_GET["nome"]) && !empty($_GET["nome"])){
+			$nome = $_GET["nome"];
+		} else {
 			echo ("Preencha o nome <br>");	// printa na tela a mensagem de erro
 			$tem_erro = true;	// altera o status da variavel de controle
 		}
