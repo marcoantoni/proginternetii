@@ -6,7 +6,6 @@
 		// inicializa as variaveis para que os valores possam ser armazenados e exibidos mais tarde
 		$nome = ""; 
 		$nascimento = "";
-		$nascimento = "";
 		$cpf = "";
 		$email = "";
 		$telefone = "";
@@ -26,29 +25,39 @@
 
 		// fazer a validação dos inputs abaixo, conforme o exemplo de cima
 
-		if (empty($nascimento)) {
-			echo ("Prrencha a data de nascimento <br>");
-			$tem_erro = true;
+		if (isset($_GET["nasc"]) && !empty($_GET["nasc"])){
+			$nascimento = $_GET["nasc"];	// armazena o nome, somente se a variavel existir e não estiver vazia
+		} else {
+			echo ("Preencha o nascimento <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-		if (empty($cpf)){
-			echo ("Preencha o CPF <br>");
-			$tem_erro = true;
+		if (isset($_GET["cpf"]) && !empty($_GET["cpf"])){
+			$cpf= $_GET["cpf"];	// armazena o nome, somente se a variavel existir e não estiver vazia
+		} else {
+			echo ("Preencha o CPF <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-		if (empty($telefone)) {
-			echo ("Preencha o telefone<br>");
-			$tem_erro = true;
+		if (isset($_GET["fone"]) && !empty($_GET["fone"])){
+			$telefone = $_GET["fone"];	// armazena o nome, somente se a variavel existir e não estiver vazia
+		} else {
+			echo ("Preencha o telefone <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-		if (empty($email)){
-			echo ("Preencha o email <br>");
-			$tem_erro = true;
+		if (isset($_GET["email"]) && !empty($_GET["email"])){
+			$email = $_GET["email"];	// armazena o nome, somente se a variavel existir e não estiver vazia
+		} else {
+			echo ("Preencha o email <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
-		if (empty($sexo)) {
-			echo ("Prrencha o sexo");
-			$tem_erro = true;
+		if (isset($_GET["sexo"]) && !empty($_GET["sexo"])){
+			$sexo = $_GET["sexo"];	// armazena o nome, somente se a variavel existir e não estiver vazia
+		} else {
+			echo ("Preencha o sexo <br>");	// printa na tela a mensagem de erro
+			$tem_erro = true;	// altera o status da variavel de controle
 		}
 
 		$msg = $_GET["mensagem"];
