@@ -6,16 +6,16 @@
 	<title>Formulário de envio de mensagem</title>
 </head>
 <body>
-	<form method="GET" action="processa_mensagem.php">
+	<form method="POST" action="processa_mensagem.php">
 		<fieldset>
 			<legend>Enviando uma mensagem</legend>
-			Nome <input type="text" name="nome"> <br>
+			Nome <input type="text" name="nome" required> <br>
 			Nascimento: <input type="date" name="nasc"> <br>
 			CPF <input type="text" name="cpf"> <br>
 			Telefone <input type="tel" name="fone"> <br>
 			Email <input type="email" name="email"> <br>
 			Sexo <br> 
-			<input type="radio" name="sexo"> Feminino <input type="radio" name="sexo">Masculino <input type="radio" name="sexo"> Intersexo <br>
+			<input type="radio" name="sexo" value="1"> Feminino <input type="radio" name="sexo" value="2">Masculino <input type="radio" name="sexo" value="3"> Intersexo <br>
 			Qual o melhor dia e horário para entrar em contato? <br>
 			Horário <input type="time" name="horario"> <br>
 			Dia da semana <br>
