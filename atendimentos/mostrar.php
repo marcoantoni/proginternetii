@@ -10,14 +10,14 @@
 <body>
 	<?php
 		// conecta ao banco de dados
-		$conn = mysqli_connect("127.0.0.1", "root", "", "programacaoparainternet");
+		$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "programacaoparainternet");
 
 		if ($conn){
 			// conexão com sucesso
 
 			// instrução sql a ser executada
 			// o date_format(nascimento, '%d/%m/%Y') AS nascimento formata o valor da data (campo nascimento) para o formato no Brasil. AS é usado para renomear o nome do campo
-			$sql = "SELECT nome, email, telefone, mensagem, date_format(nascimento, '%d/%m/%Y') AS nascimento FROM `atendimentos`;";
+			$sql = "SELECT id, nome, email, telefone, mensagem, date_format(nascimento, '%d/%m/%Y') AS nascimento FROM `atendimentos`;";
 
 			// consultas do tipo select retornam um resultset (uma matriz de registros)
 
@@ -42,7 +42,7 @@
 					echo ("<td>$row[mensagem]</td>");
 					// botões para as ações do sistema
 					echo ("<td>
-							<a href='#' class='edit_btn'>Editar</a>
+							<a href='editar.php?id=$row[id]' class='edit_btn'>Editar</a>
 							<a href='#' class='del_btn'>Exclir</a>
 						</td>");
 					echo ("</tr>");	// fecha a linha 
