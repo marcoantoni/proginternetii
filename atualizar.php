@@ -75,18 +75,18 @@
 		// a lógica de inserir os dados vai ser após as validações, para garantir que os dados sejam corretamente inseridos, sem valores em branco
 		if ($tem_erro == false) {
 			// mysql_connect é a função responsável pela conexão com o banco de dados: os 4 paramestros são: IP do servidor do BD, usuario, senha e nome da base de dados
-			$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "biblioteca");
+			$conn = mysqli_connect("10.10.3.158", "aluno", "aluno", "programacaoparainternet");
 
 			if ($conn) {
 				// conexao com sucesso 
 
-			echo	$sql = "INSERT INTO atendimentos (nome, nascimento, cpf, email, telefone, horario, mensagem, sexo) VALUES ('$nome', '$nascimento', '$cpf', '$email', '$telefone', '$horario', '$msg', $sexo)";
+			echo	$sql = "UPDATE atendimentos SET nome = '$nome', nascimento = '$nascimento', cpf = '$cpf', email = '$email', telefone = '$telefone', horario = '$horario', mensagem = '$msg', sexo = $sexo";
 
 				// executa a consulta
 				if (mysqli_query($conn, $sql) )
-					echo ("<script>alert('Mensagem enviada com sucesso!'); </script>");
+					echo ("<script>alert('Atendimento editado com sucesso!'); </script>");
 				else 
-					echo ("Houve um erro ao enviar a mensagem");
+					echo ("Houve um erro ao editar");
 			} else {
 				die("Houve um erro ao conectar com o banco de dados");
 			}
