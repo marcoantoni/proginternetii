@@ -33,8 +33,15 @@
 
                 if (!empty($usuario) && !empty($senha)) {
                     // aqui fica lógica de testar se o usuario e a senha estão corretos 
+                    include ("conecta.php");
 
-                    if ($usuario == "admin" && $senha == "1234"){
+                    // consulta sql para testar se o usuário e senha correspondem a uma entrada no bd
+                    $sql = "SELECT * FROM usuarios WHERE login = '$usuario' and senha = '$senha'";
+
+                    // executa a query
+                    $resultado = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($resultado) == 1){
                         session_start();
                         $_SESSION["usuario"] = $usuario;
                         // faz o redirecionamento de página
