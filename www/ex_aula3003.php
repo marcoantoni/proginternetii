@@ -27,4 +27,15 @@
 	}
 
 	echo ("O maior valor do conjunto é $maior <br>");
+
+	// Crie um array com 5 frutas diferentes e exiba todas elas em uma lista numerada.
+	$frutas = ["maça", "pera", "uva", "banana", "goiaba", "kiwi"];
+
+	echo ("<ol>");
+
+	foreach ($frutas as $fruta){
+		echo ("<li>$fruta</li>");
+	}
+
+	echo ("</ol>");
 ?>
