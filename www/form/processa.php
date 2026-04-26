@@ -1,74 +1,53 @@
 <?php
-	// arquivo processa.
-	// recuperando o valor de cada input
-	$nome = ""; // criando a variavel como "" para não ter o warning
-	$nasc = "";
-	$email = "";
-	$curso = "";
-	$turno = "";
-	$areas_interesse = $_POST["interesses"];
+	// arquivo processa.php
+	// Este arquivo é responsável por receber e processar os dados enviados pelo formulário
+
+	// Recebendo os dados enviados pelo formulário
+	$nome = $_POST["nome"];
+	$nascimento = $_POST["nascimento"];
+	$email = $_POST["email"];
+	$curso = $_POST["curso"];
+	$turno = $_POST["turno"];
 
 
-	// adicionando validações para garantir que todos os campos obrigatório sejam preenchidos
-
-	// criando um array para armazenar os erros de preenchimento do formulário
+	// Array que armazenará possíveis mensagens de erro
 	$erros = [];
 
-	// validar o nome
-	// se a variavel nãoe stá preenchida
+	// Validação dos campos obrigatórios
+	// empty() verifica se o campo está vazio ("", null, etc.)
 	if (empty($nome))
-		$erros[] = "Preencha o campo nome";
-	else 
-		$nome = $_POST["nome"];
+		$erros[] = "Preencha o nome";
 
-	if (empty($nasc))
-		$erros[] = "Preencha a <b>data de nascimento";
-	else
-		$nasc = $_POST["nascimento"];
+	if (empty($nascimento))
+		$erros[] = "Preencha a data de nascimento";
 
 	if (empty($email))
 		$erros[] = "Preencha o email";
-	else
-		$email = $_POST["email"];
 
-	if (empty($curso))
+	// Validação da senha
+	if (empty($curso)){
 		$erros[] = "Preencha o curso";
-	else
-		$curso = $_POST["curso"];
-		
-	
-	// como o usuário pode não marcar o turno, é necessário fazer alguns testes adicionais
-	// testando cada opção marcada de maneira individual
-	if ($_POST["turno"] == "m")
-		$turno = "Manhã";
-	else if ($_POST["turno"] == "t")
-		$turno = "Tarde";
-	else if ($_POST["turno"] == "n")
-		$turno = "Noite";
-	else
-		$erros[] = "Preencha o turno"; 
+	} 
 
+	if (empty($turno)){
+		$erros[] = "Preencha o turno";
+	}
 
-	// exibindo os dados enviados do aluno
-
-	// só tenta exibir os dados se tudo estiver preenchido corretamente
-	if (count($erros) == 0){
-		echo("Dados enviados<br>");
-		echo("Nome: <b>$nome</b><br>"); 
-		echo("Data nascimento: <b>$nasc</b><br>"); 
-		echo("E-mail: <b>$email</b><br>"); 
-		echo("Curso: <b>$curso</b><br>"); 
-		echo("Turno das aulas: <b>$turno</b><br>");
-		echo("Áreas de interesse<br>"); 
-		
-		// testando se o usuario marcou algum interesse
-		if (count($areas_interesse) > 0) {
-			// mostra as areas de interesse
-			foreach ($areas_interesse AS $area){
-				echo ("<b>$area</b><br>");
-			}
-		} else {
-			echo ("Não tem interesse em nenhuma área");
+	// Se houver erros, exibe todos na tela
+	if (count($erros) > 0){
+		// Percorre o array de erros e imprime cada mensagem
+		foreach ($erros AS $erro){
+			echo ("$erro<br>");
 		}
+	} else {
+		// Caso não haja erros, exibe os dados informados pelo usuário
+		echo ("Todos os campos foram preenchidos corretamente: foi digitado os seguintes valores <br>");
+		echo ("Nome: $nome <br>");
+		echo ("Data de nascimento: $nascimento <br>");
+		echo ("Email: $email <br>");
+		echo ("Curso: $curso <br>");
+		echo ("Turno: $turno <br>");
+
+
 	}
 ?>
