@@ -2,6 +2,12 @@
 	// arquivo processa.php
 	// Este arquivo é responsável por receber e processar os dados enviados pelo formulário
 
+	// Verifica se o formulário foi enviado (se o botão "enviar" existe no $_POST)
+	// Caso não exista, significa que o usuário acessou a página diretamente,
+	// então ele é redirecionado para o formulário (cad_aluno.php)
+	if (!isset($_POST["enviar"]))
+		header("location: cad_aluno.php");
+
 	// Recebendo os dados enviados pelo formulário
 	$nome = $_POST["nome"];
 	$nascimento = $_POST["nascimento"];
@@ -46,6 +52,14 @@
 		echo ("Data de nascimento: $nascimento <br>");
 		echo ("Email: $email <br>");
 		echo ("Curso: $curso <br>");
+
+		if ($turno == "m")
+			$turno = "Manhã";
+		else if ($turno == "t")
+			$turno = "Tarde";
+		else 
+			$turno = "Noite";
+
 		echo ("Turno: $turno <br>");
 
 
