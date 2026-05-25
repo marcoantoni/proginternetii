@@ -16,4 +16,8 @@
 	// que o índice não foi encontrado
 	// dessa forma, é importante usar o isset para testar a existência da variavel antes de tentar manipular ela
 
+	if (isset($_SESSION["nome"]) && isset($_SESSION["curso"]) ) 
+		// copiando a mensgem do arquivo session_create.php
+		echo ("Nome: $_SESSION[nome] está matriculado no curso $_SESSION[curso] ");
+
 ?>
