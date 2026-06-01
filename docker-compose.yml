@@ -1,6 +1,6 @@
 services:
   php:
-    image: php:8.3-apache
+    build: .
     container_name: prog_internet
     ports:
       - "8080:80"
