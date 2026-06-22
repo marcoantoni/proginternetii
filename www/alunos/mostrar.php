@@ -1,3 +1,21 @@
+<?php
+    /*
+     * Converte os valores armazenados no banco de dados para
+     * uma representação mais amigável ao usuário.
+     *
+     * Valor 0  -> Não
+     * Valor 1  -> Sim
+     */
+    function converterInteresse($valor) {
+
+        if ($valor == 0)
+            return "Não";
+
+        return "Sim";
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -27,88 +45,151 @@
 
                         <div class="table-responsive">
 
-                            <table class="table table-striped table-hover align-middle">
+                            <?php
+                                /*
+                                 * Realiza a conexão com o banco de dados.
+                                 * Caso ocorra algum problema, a execução
+                                 * do script será interrompida.
+                                 */
+                                try {
+                                    $conn = mysqli_connect("mysql", "root", "1234", "prog_internet");
+                                } catch (mysqli_sql_exception $e) {
+                                    die ("Houve um erro ao conectar");
+                                }
 
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nome</th>
-                                        <th>Nascimento</th>
-                                        <th>E-mail</th>
-                                        <th>Curso</th>
-                                        <th>Turno</th>
-                                        <th>Prog.</th>
-                                        <th>BD</th>
-                                        <th>Redes</th>
-                                        <th>Eng. Soft.</th>
-                                        <th class="text-center text-nowrap">
-                                            Ações
-                                        </th>
-                                    </tr>
-                                </thead>
+                                /*
+                                 * Variável utilizada para contabilizar
+                                 * quantos alunos foram exibidos na tabela.
+                                 */
+                                $qtd_alunos = 0;
 
-                                <tbody>
+                                /*
+                                 * Consulta responsável por buscar todos os
+                                 * alunos cadastrados, ordenados pelo nome.
+                                 */
+                                $sql = "SELECT * FROM alunos ORDER BY nome ASC";
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Gabriel Henrique Moreira da Silva</td>
-                                        <td>15/03/2007</td>
-                                        <td>gabriel.silva@email.com</td>
-                                        <td>Técnico em Informática</td>
-                                        <td>Noite</td>
-                                        <td>Sim</td>
-                                        <td>Não</td>
-                                        <td>Sim</td>
-                                        <td>Sim</td>
+                                /*
+                                 * Executa a consulta SQL e armazena o resultado
+                                 * para posterior processamento.
+                                 */
+                                $resultado = mysqli_query($conn, $sql);
 
-                                        <td class="text-center text-nowrap">
-                                            <a 
-                                               class="btn btn-outline-primary btn-sm">
-                                                Editar
-                                            </a>
+                                /*
+                                 * Verifica se a consulta retornou pelo menos
+                                 * um registro.
+                                 */
+                                if (mysqli_num_rows($resultado) > 0) {
 
-                                            <a href="excluir.php?id=1"
-                                               class="btn btn-outline-danger btn-sm">
-                                                Excluir
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    /*
+                                     * Cria a estrutura inicial da tabela que
+                                     * será utilizada para exibir os dados.
+                                     */
+                                    echo ('<table class="table table-striped table-hover align-middle">
 
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Ana Paula Souza</td>
-                                        <td>10/08/2006</td>
-                                        <td>ana.souza@email.com</td>
-                                        <td>Técnico em Administração</td>
-                                        <td>Manhã</td>
-                                        <td>Não</td>
-                                        <td>Sim</td>
-                                        <td>Não</td>
-                                        <td>Sim</td>
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Nascimento</th>
+                                                <th>E-mail</th>
+                                                <th>Curso</th>
+                                                <th>Turno</th>
+                                                <th>Prog.</th>
+                                                <th>BD</th>
+                                                <th>Redes</th>
+                                                <th>Eng. Soft.</th>
+                                                <th class="text-center text-nowrap">
+                                                    Ações
+                                                </th>
+                                            </tr>
+                                        </thead>
 
-                                        <td class="text-center text-nowrap">
-                                            <a 
-                                               class="btn btn-outline-primary btn-sm">
-                                                Editar
-                                            </a>
+                                        <tbody>
+                                    ');
 
-                                            <a 
-                                               class="btn btn-outline-danger btn-sm">
-                                                Excluir
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    /*
+                                     * Percorre todos os registros retornados
+                                     * pela consulta, exibindo uma linha da
+                                     * tabela para cada aluno encontrado.
+                                     */
+                                    while ($row = mysqli_fetch_array($resultado)){
 
-                                </tbody>
+                                        // Inicia uma nova linha da tabela.
+                                        echo ("<tr>");
 
-                            </table>
+                                        // Exibe os dados básicos do aluno.
+                                        echo ("<td>$row[nome]</td>");
+                                        echo ("<td>$row[nascimento]</td>");
+                                        echo ("<td>$row[email]</td>");
+                                        echo ("<td>$row[curso]</td>");
+                                        echo ("<td>$row[turno]</td>");
 
+                                        /*
+                                         * Exibe as áreas de interesse do aluno,
+                                         * convertendo os valores numéricos para
+                                         * os textos "Sim" ou "Não".
+                                         */
+                                        echo ("<td>" . converterInteresse($row["programacao"]) . "</td>");
+                                        echo ("<td>" . converterInteresse($row["banco_dados"]) . "</td>");
+                                        echo ("<td>" . converterInteresse($row["redes"]) . "</td>");
+                                        echo ("<td>" . converterInteresse($row["eng_software"]) . "</td>");
+
+                                        /*
+                                         * Exibe os botões de ação associados
+                                         * ao registro do aluno.
+                                         */
+                                        echo ('
+                                            <td class="text-center text-nowrap">
+                                                <a
+                                                   class="btn btn-outline-primary btn-sm">
+                                                    Editar
+                                                </a>
+
+                                                <a 
+                                                   class="btn btn-outline-danger btn-sm">
+                                                    Excluir
+                                                </a>
+                                            </td>
+                                        ');
+
+                                        // Finaliza a linha atual da tabela.
+                                        echo ("</tr>");
+
+                                        /*
+                                         * Incrementa o contador de alunos
+                                         * exibidos para uso no rodapé.
+                                         */
+                                        $qtd_alunos++;
+
+                                    }
+
+                                    /*
+                                     * Finaliza a estrutura da tabela após
+                                     * a exibição de todos os registros.
+                                     */
+                                    echo ("</tbody>
+                                        </table>"
+                                    );
+
+                                } else {
+
+                                    /*
+                                     * Mensagem exibida quando não existem
+                                     * alunos cadastrados no banco de dados.
+                                     */
+                                    echo ("Não há dados para serem exibidos");
+                                }
+                            ?>
                         </div>
 
                     </div>
 
                     <div class="card-footer text-center">
-                        Total de alunos cadastrados: 2
+                        <!--
+                            Forma resumida de exibir uma variável PHP.
+                            Equivale a: <?php echo $qtd_alunos; ?>
+                        -->
+                        Total de alunos cadastrados: <?= $qtd_alunos ?>
                     </div>
 
                 </div>
@@ -119,3 +200,4 @@
 
 </body>
 </html>
+```
