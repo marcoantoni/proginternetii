@@ -1,4 +1,8 @@
 <?php
+    // Inicia a sessão para permitir o acesso às variáveis de sessão ($_SESSION).
+    // A sessão precisa ser aberta antes de qualquer conteúdo ser enviado ao navegador.
+    session_start();
+
     /*
      * Converte os valores armazenados no banco de dados para
      * uma representação mais amigável ao usuário.
@@ -31,9 +35,41 @@
         <div class="row justify-content-center">
             <div class="col-12">
 
-                <div class="alert alert-danger" role="alert">
-                  A simple primary alert—check it out!
+                <?php
+                    // Verifica se existe uma mensagem armazenada na sessão.
+                    // Se existir, o alerta do Bootstrap será exibido.
+                    // Caso contrário, esse bloco HTML será ignorado.
+                    if (isset($_SESSION["msg"])):
+                ?>
+
+                <div id="msg" class="alert <?= $_SESSION["class"] ?>" role="alert">
+                  <?= $_SESSION["msg"] ?>
                 </div>
+
+                <?php
+                    // Remove a variável da sessão para que a mensagem
+                    // seja exibida apenas uma vez. Caso contrário,
+                    // ela apareceria novamente ao atualizar a página.
+                    unset($_SESSION["msg"]);
+
+                    // encerra o if aberto acima
+                    endif;
+                ?>
+
+                <script>
+                    // Oculta a div que contém a mensagem de alerta.
+                    // Em vez de removê-la da página, apenas altera
+                    // sua propriedade display para "none".
+                    function fecharMensagem() {
+                        document.getElementById("msg").style.display = "none";
+                    }
+
+                    // Agenda a execução da função fecharMensagem()
+                    // para ocorrer 5 segundos (5000 ms) após
+                    // o carregamento da página.
+                    setTimeout(fecharMensagem, 5000);
+
+                </script>
 
                 <div class="card shadow">
 
@@ -141,6 +177,10 @@
                                         /*
                                          * Exibe os botões de ação associados
                                          * ao registro do aluno.
+                                         * Atualização 6 de julho
+                                         * Utilizamos aspas duplas para delimitar a string do echo.
+                                         * Como o código HTML também utiliza aspas duplas em seus atributos (por exemplo, class="btn"), é necessário usar o caractere de escape (\") para indicar que essas aspas fazem parte do texto e não encerram a string.
+                                         * Outra vantagem das aspas duplas é permitir a inserção de variáveis, como $row[id], diretamente dentro da string.
                                          */
                                         echo ("
                                             <td class=\"text-center text-nowrap\">
@@ -204,4 +244,3 @@
 
 </body>
 </html>
-```
