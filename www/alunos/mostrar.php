@@ -31,6 +31,10 @@
         <div class="row justify-content-center">
             <div class="col-12">
 
+                <div class="alert alert-danger" role="alert">
+                  A simple primary alert—check it out!
+                </div>
+
                 <div class="card shadow">
 
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -138,19 +142,19 @@
                                          * Exibe os botões de ação associados
                                          * ao registro do aluno.
                                          */
-                                        echo ('
-                                            <td class="text-center text-nowrap">
+                                        echo ("
+                                            <td class=\"text-center text-nowrap\">
                                                 <a
-                                                   class="btn btn-outline-primary btn-sm">
+                                                   class=\"btn btn-outline-primary btn-sm\">
                                                     Editar
                                                 </a>
 
                                                 <a 
-                                                   class="btn btn-outline-danger btn-sm">
+                                                   href=\"excluir.php?id=$row[id]\" class=\"btn btn-outline-danger btn-sm\">
                                                     Excluir
                                                 </a>
                                             </td>
-                                        ');
+                                        ");
 
                                         // Finaliza a linha atual da tabela.
                                         echo ("</tr>");
