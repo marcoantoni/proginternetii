@@ -86,17 +86,12 @@
                         <div class="table-responsive">
 
                             <?php
-                                /*
-                                 * Realiza a conexão com o banco de dados.
-                                 * Caso ocorra algum problema, a execução
-                                 * do script será interrompida.
-                                 */
-                                try {
-                                    $conn = mysqli_connect("mysql", "root", "1234", "prog_internet");
-                                } catch (mysqli_sql_exception $e) {
-                                    die ("Houve um erro ao conectar");
-                                }
-
+                                
+                                // A conexão com o banco de dados foi movida para o arquivo conecta.php, evitando duplicação de código.
+                               
+                                // Reutiliza a conexão com o banco de dados definida em conecta.php.
+                                require_once("../conecta.php");
+                                
                                 /*
                                  * Variável utilizada para contabilizar
                                  * quantos alunos foram exibidos na tabela.

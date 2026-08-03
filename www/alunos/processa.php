@@ -70,28 +70,9 @@
 		// Se não houver erros de validação, podemos cadastrar o aluno
 		// no banco de dados.
 
-		// Tenta executar o código de conexão com o banco.
-		// Caso ocorra algum erro durante a conexão, o bloco catch será executado.
-		try {
-
-			// Abre uma conexão com o banco de dados MySQL.
-			//
-			// Parâmetros do mysqli_connect:
-			// 1º - endereço do servidor do banco de dados
-			// 2º - usuário
-			// 3º - senha
-			// 4º - nome do banco de dados
-			//
-			// A função retorna um objeto de conexão que será utilizado
-			// para executar consultas SQL.
-			$conn = mysqli_connect("mysql", "root", "1234", "prog_internet");
-
-		} catch (mysqli_sql_exception $e){
-
-			// die() encerra imediatamente a execução do programa
-			// e exibe a mensagem informada.
-			die("Erro ao conectar com o banco de dados");
-		}
+		// incluindo o arquivo de conexão com o banco de dados
+		require_once("../conecta.php");
+	
 
 		// Monta o comando SQL responsável por inserir os dados
 		// do aluno na tabela alunos.

@@ -8,12 +8,8 @@
 	// Nesse caso, a variável $id receberá o valor 5.
 	$id = $_GET["id"];
 
-	// esse bloco foi copiado de mostrar.php
-	try {
-        $conn = mysqli_connect("mysql", "root", "1234", "prog_internet");
-    } catch (mysqli_sql_exception $e) {
-        die ("Houve um erro ao conectar");
-    }
+	// incluindo o arquivo de conexão com o banco de dados
+	require_once("../conecta.php");
 
     // Monta o comando SQL responsável por excluir o registro.
     // O DELETE remove registros de uma tabela.
