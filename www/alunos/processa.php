@@ -1,4 +1,7 @@
 <?php
+
+	session_start();
+
 	// arquivo processa.php
 	// Este arquivo é responsável por receber e processar os dados enviados pelo formulário
 
@@ -89,8 +92,14 @@
 		// Se a operação for realizada com sucesso, retorna true.
 		// Caso ocorra algum problema, retorna false.
 		if (mysqli_query($conn, $sql)) {
+			// Define a mensagem que será exibida ao usuário
+			$_SESSION["msg"] = "Aluno cadastrado com sucesso";
 
-			echo("Aluno cadastrado com sucesso");
+			// Define as classes do Bootstrap para exibir um alerta de sucesso
+			$_SESSION["class"] = "alert alert-success";
+
+			// Faz o redirecionamento para o arquivo mostrar.php - lá será exibido a mensagem
+			header("location: mostrar.php");
 
 		} else {
 
