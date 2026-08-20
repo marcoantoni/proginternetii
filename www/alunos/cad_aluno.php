@@ -43,9 +43,26 @@
                                         Nas próximas aulas, esse select será desenvolvido com informações vindas do banco de dados.
                                 -->
                                 <select class="form-select" id="curso" name="curso">
-                                    <option value="1">Técnico em administração</option>
-                                    <option value="2">Técnico em agropecuária</option>
-                                    <option value="3">Técnico em informática</option>
+                                    <?php
+                                        // Inclui o arquivo responsável pela conexão com o banco de dados
+                                        require_once("../conecta.php");
+
+                                        // Monta a consulta para buscar todos os cursos,
+                                        // ordenando os resultados pelo nome em ordem alfabética
+                                        $sql = "SELECT * FROM cursos ORDER BY nome ASC";
+
+                                        // Executa a consulta no banco de dados
+                                        $resultado = mysqli_query($conn, $sql);
+
+                                        // Percorre todos os cursos retornados pela consulta
+                                        while ($row = mysqli_fetch_array($resultado)) {
+
+                                            // Cria uma opção (<option>) para cada curso encontrado
+                                            // O value recebe o ID do curso e o texto exibido recebe o nome
+                                            echo ("<option value=\"$row[id]\"> $row[nome]</option>");
+                                        }
+                                    ?>
+                                </select>
                                 </select>
                             </div>
 
