@@ -89,9 +89,27 @@
                                     informações vindas do banco de dados. Por esse motivo, não foi tratado.
                                 -->
                                 <select class="form-select" id="curso" name="curso">
-                                    <option value="1">Técnico em administração</option>
-                                    <option value="2">Técnico em agropecuária</option>
-                                    <option value="3">Técnico em informática</option>
+                                     <?php
+                                        // Inclui o arquivo responsável pela conexão com o banco de dados
+                                        require_once("../conecta.php");
+
+                                        // Monta a consulta para buscar todos os cursos,
+                                        // ordenando os resultados pelo nome em ordem alfabética
+                                        $sql = "SELECT * FROM cursos ORDER BY nome ASC";
+
+                                        // Executa a consulta no banco de dados
+                                        $resultado = mysqli_query($conn, $sql);
+
+                                        // Percorre todos os cursos retornados pela consulta
+                                        while ($row = mysqli_fetch_array($resultado)) {
+
+                                            // se o id da tabela curso for o mesmo que o aluno tem no campo id_curso, insere o atributo selected
+                                            if ($row["id"] == $curso)
+                                                echo ("<option value=\"$row[id]\" selected> $row[nome]</option>");
+                                            else
+                                                echo ("<option value=\"$row[id]\"> $row[nome]</option>");
+                                        }
+                                    ?>
                                 </select>
                             </div>
 

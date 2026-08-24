@@ -76,7 +76,7 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">Alunos cadastrados</h3>
 
-                        <a href="index.php" class="btn btn-primary">
+                        <a href="cad_aluno.php" class="btn btn-primary">
                             Novo aluno
                         </a>
                     </div>
@@ -179,7 +179,8 @@
                                          */
                                         echo ("
                                             <td class=\"text-center text-nowrap\">
-                                                <a
+                                                <a 
+                                                   href=\"editar.php?id=$row[id]\"
                                                    class=\"btn btn-outline-primary btn-sm\">
                                                     Editar
                                                 </a>
