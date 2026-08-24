@@ -95,7 +95,8 @@
 
 			// O operador .= concatena o novo erro
 			// com o conteúdo que já está armazenado na variável.
-			$_SESSION["msg"] .= $erro;
+			$_SESSION["msg"] .= "$erro <br>";
+			$_SESSION["class"] = "alert alert-danger";
 		}
 
 	} else {
@@ -209,14 +210,13 @@
 			$_SESSION["class"] = "alert alert-danger";
 
 		}
-
-
-		// Faz o redirecionamento para o arquivo mostrar.php.
-		// Lá será exibida a mensagem armazenada na sessão.
-		header("location: mostrar.php");
 		
 		// Encerra a conexão com o banco de dados.
 		mysqli_close($conn);
-		
+
 	}
+
+	// Faz o redirecionamento para o arquivo mostrar.php.
+	// Lá será exibida a mensagem armazenada na sessão.
+	header("location: mostrar.php");
 ?>
