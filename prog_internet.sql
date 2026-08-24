@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Tempo de geração: 15/06/2026 às 11:42
+-- Tempo de geração: 24/08/2026 às 12:01
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.31
 
@@ -45,11 +45,36 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`id`, `nome`, `nascimento`, `email`, `turno`, `curso`, `programacao`, `banco_dados`, `redes`, `eng_software`) VALUES
-(1, 'André Carlos do Nascimento', '2009-05-21', 'andre@gmail.com', 'm', 1, 0, 0, 0, 0),
-(2, 'Ana Cássia Araújo', '2011-02-18', 'anac@ymail.com', 'm', 3, 0, 0, 0, 0),
-(3, 'Ana Gabriela  Becker', '2000-02-15', 'ana@becker.com.br', 't', 2, 0, 0, 0, 0),
-(4, 'Bruna Gabriela Fontoura', '2009-04-11', 'bruna@gabriela.com', 'm', 1, 0, 0, 0, 0),
-(5, 'Gabriel Henrique Moreira da Silva', '2007-10-15', 'gabrielhenriquems@gmail.com', 't', 3, 1, 0, 1, 0);
+(1, 'Ana Carolina', '2007-03-15', 'ana.carolina@email.com', 'm', 1, 8, 7, 9, 8),
+(2, 'Bruno Henrique', '2006-11-22', 'bruno.henrique@email.com', 't', 2, 6, 8, 7, 6),
+(3, 'Carlos Eduardo', '2005-07-10', 'carlos.eduardo@email.com', 'm', 1, 9, 9, 8, 10),
+(4, 'Daniela Souza', '2008-01-28', 'daniela.souza@email.com', 't', 3, 7, 6, 8, 7),
+(5, 'Eduardo Martins', '2006-05-19', 'eduardo.martins@email.com', 'm', 2, 5, 7, 6, 8),
+(6, 'Fernanda Lima', '2007-09-03', 'fernanda.lima@email.com', 't', 1, 10, 9, 9, 9),
+(7, 'Gabriel Santos', '2005-12-14', 'gabriel.santos@email.com', 'm', 3, 6, 5, 7, 6),
+(8, 'Juliana Alves', '2008-04-11', 'juliana.alves@email.com', 't', 2, 8, 8, 9, 7),
+(9, 'Lucas Oliveira', '2006-08-30', 'lucas.oliveira@email.com', 'm', 1, 7, 9, 6, 8),
+(10, 'Mariana Costa', '2007-02-17', 'mariana.costa@email.com', 't', 3, 9, 8, 10, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cursos`
+--
+
+CREATE TABLE `cursos` (
+  `id` int NOT NULL,
+  `nome` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `nome`) VALUES
+(1, 'Téc. em Informática'),
+(2, 'Téc. Agropecuária'),
+(3, 'Téc. em Administração');
 
 --
 -- Índices para tabelas despejadas
@@ -62,6 +87,12 @@ ALTER TABLE `alunos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `cursos`
+--
+ALTER TABLE `cursos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -69,7 +100,13 @@ ALTER TABLE `alunos`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `cursos`
+--
+ALTER TABLE `cursos`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
